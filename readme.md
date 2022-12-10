@@ -11,7 +11,7 @@
 
 ### Chrome
 
-1. Download the [latest release] from Releases.
+1. Download the [latest release](https://github.com/1997roylee/openai-chatgpt-everywhere-extension/releases) from [Releases](https://github.com/1997roylee/openai-chatgpt-everywhere-extension/releases).
 2. Unzip the file.
 3. Go to `chrome://extensions/` in your browser.
 4. Enable `Developer mode` in the top right corner.
