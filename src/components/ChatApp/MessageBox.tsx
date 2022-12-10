@@ -9,7 +9,7 @@ interface Props {
 
 export const MessageBox = ({ isMe = false, message = '' }: Props): JSX.Element => {
     return (
-        <Box bg={isMe ? '#eee' : '#fff'} p={12} w='100%'>
+        <Box bg={isMe ? '#eee' : '#fff'} p={12} w='auto'>
             <Flex w='100%'>
                 <Box
                     sx={{
