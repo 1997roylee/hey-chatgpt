@@ -1,0 +1,35 @@
+{
+    "name": "ChatGPT Everywhere",
+    "description": "Feel free to use ChatGPT Everywhere to chat with ChatGPT on your tabs. This extension is not affiliated with ChatGPT in any way.",
+    "version": "0.0.1",
+    "manifest_version": 3,
+    "action": {
+        "default_popup": "index.html",
+        "default_title": "Open the popup"
+    },
+    "icons": {
+        "16": "logo600.png",
+        "48": "logo600.png",
+        "128": "logo600.png"
+    },
+    "host_permissions": [
+        "https://*.openai.com/"
+    ],
+    "permissions": [
+        "activeTab"
+    ],
+    "background": {
+        "service_worker": "src/background.ts"
+    },
+    "content_scripts": [
+        {
+            "matches": [
+                "http://*/*",
+                "https://*/*"
+            ],
+            "js": [
+                "src/Content.tsx"
+            ]
+        }
+    ]
+}
