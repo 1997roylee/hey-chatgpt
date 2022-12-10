@@ -1,6 +1,7 @@
 import { v4 as uuid } from 'uuid'
 import extractJsonFromString from 'extract-json-from-string'
 import Cookies from 'js-cookie'
+import { useAppStore } from '../stores'
 
 export const getAccessToken = async (): Promise<any> => {
     if (Cookies.get('accessToken') !== undefined) {
@@ -41,7 +42,7 @@ export const postConversation = async (message: string, token: string): Promise<
                 },
             ],
             model: 'text-davinci-002-render',
-            parent_message_id: uuid(),
+            parent_message_id: useAppStore.getState().lastConversationId ?? uuid(),
         }),
         signal: controller.signal,
     })

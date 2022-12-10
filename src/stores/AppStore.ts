@@ -18,12 +18,14 @@ export interface AppState {
     getMessageList: () => IMessage[]
     setIsLoading: (isLoading: boolean) => void
     lastUpdatedAt: number
+    lastConversationId?: string
 }
 
 export const useAppStore = create<AppState>((set, get) => ({
     messages: {},
     lastIndex: 0,
     isLoading: false,
+    lastConversationId: undefined,
     lastUpdatedAt: new Date().getTime(),
     addMessage: (message: IMessage) => {
         if (Object.prototype.hasOwnProperty.call(get().messages, message.id)) {
@@ -36,6 +38,7 @@ export const useAppStore = create<AppState>((set, get) => ({
                     },
                 },
                 lastUpdatedAt: new Date().getTime(),
+                lastConversationId: message.id,
             }))
         } else {
             set((state) => ({
