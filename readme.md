@@ -1,6 +1,11 @@
-# ChatGPT Everywhere
+# ChatGPT Everywhere - Beta
 
 "ChatGPT Everywhere" is a new extension that allows users to access the powerful ChatGPT language model from any tab in their web browser. With this feature, users can easily get answers to their questions, have natural conversations, and even receive suggestions for completing sentences and phrases. ChatGPT Everywhere makes it easy for users to benefit from the advanced language processing capabilities of ChatGPT no matter what they're doing online. Whether you're working on a research project, chatting with friends, or just browsing the web, ChatGPT Everywhere has you covered. Try it out today and experience the convenience and power of having ChatGPT at your fingertips wherever you go.
+
+## Checklist
+
+1. The extension is not working on some websites. If you find any website that the extension is not working on, please open an issue and I will try to fix it.
+2. Testing is not complete. If you find any bugs, please open an issue and I will try to fix it.
 
 ## Installation
 
