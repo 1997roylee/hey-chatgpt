@@ -14,6 +14,10 @@
 6. Select the unzipped folder.
 7. Enjoy!
 
+### Screenshots
+
+![Alt text](screenshots.png "Screenshots")
+
 ## Credit
 
 This project is inspired by [wong2/chat-gpt-google-extension](https://github.com/wong2/chat-gpt-google-extension)
