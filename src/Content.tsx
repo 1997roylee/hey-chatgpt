@@ -11,7 +11,7 @@ document.body.append(root)
 
 ReactDOM.createRoot(root).render(
     <React.StrictMode>
-        <MantineProvider withGlobalStyles theme={theme}>
+        <MantineProvider withCSSVariables theme={theme}>
             <Chatbot />
         </MantineProvider>
     </React.StrictMode>,
