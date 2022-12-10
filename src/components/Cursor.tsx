@@ -9,7 +9,8 @@ export const Cursor = ({ onClick }: Props): JSX.Element => {
     return (
         <Box
             sx={{
-                position: 'fixed',
+                // zIndex: 9999,
+                position: 'relative',
             }}
             right={24}
             bottom={24}
@@ -19,7 +20,6 @@ export const Cursor = ({ onClick }: Props): JSX.Element => {
                 sx={{
                     width: 64 - 16,
                     height: 64 - 16,
-                    zIndex: 1000,
                     borderRadius: 64 / 2,
                     backgroundColor: '#fff',
                     '--shadow-1': 'rgba(0, 0, 0, 0.1)',
