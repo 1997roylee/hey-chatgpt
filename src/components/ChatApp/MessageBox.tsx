@@ -2,7 +2,6 @@ import { Box, Flex, Text } from '@mantine/core'
 import { OpenAi } from '../OpenAi'
 
 interface Props {
-    // avatar: string
     isMe?: boolean
     message: string
 }
