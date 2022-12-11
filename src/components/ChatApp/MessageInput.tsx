@@ -1,14 +1,18 @@
 import { Box, Input } from '@mantine/core'
 import { useCallback, useState } from 'react'
 import Browser from 'webextension-polyfill'
-import { useAppStore } from '../../stores'
+import { AppState, useAppStore } from '../../stores'
 
 export const MessageInput = (): JSX.Element => {
     const [value, setValue] = useState<string>('')
-    const { addMessage, setIsLoading } = useAppStore((state: any) => ({
-        addMessage: state.addMessage,
-        setIsLoading: state.setIsLoading,
-    }))
+    const { addMessage, setIsLoading, isReverseProxyMode, lastConversationId } = useAppStore(
+        ({ lastConversationId, addMessage, setIsLoading, isReverseProxyMode }: AppState) => ({
+            lastConversationId,
+            addMessage,
+            setIsLoading,
+            isReverseProxyMode,
+        }),
+    )
     const handleChange = useCallback((event: any) => {
         setValue(event.target.value)
     }, [])
@@ -21,10 +25,16 @@ export const MessageInput = (): JSX.Element => {
                 id: Date.now().toString(),
                 text: value,
                 sender: 'me',
+                index: 0,
             })
             setIsLoading(true)
             setValue('')
-            void Browser.runtime.sendMessage(value)
+            void Browser.runtime.sendMessage({
+                type: 'chat',
+                payload: value,
+                parentMessageId: lastConversationId,
+                proxy: isReverseProxyMode,
+            })
         }
     }
 

@@ -19,6 +19,8 @@ export interface AppState {
     setIsLoading: (isLoading: boolean) => void
     lastUpdatedAt: number
     lastConversationId?: string
+    isReverseProxyMode: boolean
+    setIsReverseProxyMode: (isReverseProxyMode: boolean) => void
 }
 
 export const useAppStore = create<AppState>((set, get) => ({
@@ -27,6 +29,8 @@ export const useAppStore = create<AppState>((set, get) => ({
     isLoading: false,
     lastConversationId: undefined,
     lastUpdatedAt: new Date().getTime(),
+    isReverseProxyMode: false,
+    setIsReverseProxyMode: (isReverseProxyMode: boolean) => set({ isReverseProxyMode }),
     addMessage: (message: IMessage) => {
         if (Object.prototype.hasOwnProperty.call(get().messages, message.id)) {
             set((state) => ({

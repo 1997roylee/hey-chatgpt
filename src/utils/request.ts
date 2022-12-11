@@ -1,7 +1,6 @@
 import { v4 as uuid } from 'uuid'
 import extractJsonFromString from 'extract-json-from-string'
 import Cookies from 'js-cookie'
-import { useAppStore } from '../stores'
 
 export const getAccessToken = async (): Promise<any> => {
     if (Cookies.get('accessToken') !== undefined) {
@@ -18,9 +17,18 @@ export const getAccessToken = async (): Promise<any> => {
     return null
 }
 
-export const postConversation = async (message: string, token: string): Promise<any> => {
+export const postConversation = async (
+    message: string,
+    token: string,
+    parentId?: string,
+    proxy?: boolean,
+): Promise<any> => {
     const controller = new AbortController()
-    const url = 'https://chat.openai.com/backend-api/conversation'
+    const url =
+        proxy ?? false
+            ? 'https://gpt.chatapi.art/backend-api/conversation'
+            : 'https://chat.openai.com/backend-api/conversation'
+
     return await fetch(url, {
         method: 'POST',
         headers: {
@@ -42,7 +50,7 @@ export const postConversation = async (message: string, token: string): Promise<
                 },
             ],
             model: 'text-davinci-002-render',
-            parent_message_id: useAppStore.getState().lastConversationId ?? uuid(),
+            parent_message_id: parentId ?? uuid(),
         }),
         signal: controller.signal,
     })
