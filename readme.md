@@ -25,7 +25,7 @@
 
 ## Screenshots
 
-![Alt text](screenshots.png "Screenshots")
+![Alt text](screenshots.png 'Screenshots')
 
 ## Credit
 
