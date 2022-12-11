@@ -1,4 +1,4 @@
-# ChatGPT Everywhere - Beta
+# ChatGPT Everywhere - Beta (支持中國地區)
 
 "ChatGPT Everywhere" is a new extension that allows users to access the powerful ChatGPT language model from any tab in their web browser. With this feature, users can easily get answers to their questions, have natural conversations, and even receive suggestions for completing sentences and phrases. ChatGPT Everywhere makes it easy for users to benefit from the advanced language processing capabilities of ChatGPT no matter what they're doing online. Whether you're working on a research project, chatting with friends, or just browsing the web, ChatGPT Everywhere has you covered. Try it out today and experience the convenience and power of having ChatGPT at your fingertips wherever you go.
 
@@ -19,7 +19,11 @@
 6. Select the unzipped folder.
 7. Enjoy!
 
-### Screenshots
+## Note
+
+1. "ChatGPT Everywhere" supports China Mainland. If you are in China Mainland, you can use this extension without any VPN.
+
+## Screenshots
 
 ![Alt text](screenshots.png "Screenshots")
 
