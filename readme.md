@@ -33,7 +33,7 @@
 
 ## Screenshots
 
-<video src='./screenshots.mp4' width=640/>
+https://github.com/1997roylee/openai-chatgpt-everywhere-extension/blob/main/screenshots.mp4
 
 ## Credit
 
