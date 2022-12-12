@@ -33,7 +33,7 @@
 
 ## Screenshots
 
-![Alt text](screenshots.gif 'Screenshots')
+<video src='./screenshots.mp4' width=640/>
 
 ## Credit
 
