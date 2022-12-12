@@ -2,9 +2,9 @@
 
 "ChatGPT Everywhere" is a new extension that allows users to access the powerful ChatGPT language model from any tab in their web browser. With this feature, users can easily get answers to their questions, have natural conversations, and even receive suggestions for completing sentences and phrases. ChatGPT Everywhere makes it easy for users to benefit from the advanced language processing capabilities of ChatGPT no matter what they're doing online. Whether you're working on a research project, chatting with friends, or just browsing the web, ChatGPT Everywhere has you covered. Try it out today and experience the convenience and power of having ChatGPT at your fingertips wherever you go.
 
-## Issues
+## Note
 
-1. OpenAI enabled the Cloudflare protection on the API. The extension is not working yet. I will try to fix it.
+1. Reverse proxy is not working.
 
 ## Checklist
 
