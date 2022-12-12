@@ -12,7 +12,6 @@ export const ask = async (
 ): Promise<void> => {
     const token = options?.proxy ?? false ? '' : await getAccessToken()
 
-    console.log('token: ', token)
     if (token === null || token === undefined) {
         // eslint-disable-next-line n/no-callback-literal
         callback(
@@ -38,6 +37,11 @@ export const onMessageListener = async (
     },
     sender: Browser.Runtime.MessageSender,
 ): Promise<void> => {
+    console.log(
+        await Browser.cookies.getAll({
+            url: 'https://chat.openai.com',
+        }),
+    )
     void ask(
         msg.payload,
         msg.parentMessageId,
