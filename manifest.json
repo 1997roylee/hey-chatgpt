@@ -1,7 +1,7 @@
 {
     "name": "ChatGPT Everywhere",
     "description": "Feel free to use ChatGPT Everywhere to chat with ChatGPT on your tabs. This extension is not affiliated with ChatGPT in any way.",
-    "version": "0.0.1",
+    "version": "0.0.2",
     "manifest_version": 3,
     "action": {
         "default_popup": "index.html",
