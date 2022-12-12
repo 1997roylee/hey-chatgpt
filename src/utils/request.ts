@@ -15,16 +15,17 @@ export const getAccessToken = async (): Promise<any> => {
             cookie: await getCookies(),
         },
     })
-    const data = await response.json()
-    if (response.status === 200) {
-        Cookies.set('accessToken', data.accessToken, { expires: new Date(data.expires).getTime() })
-        return data.accessToken
-    } else if (response.status === 403) {
+
+    if (response.status === 403) {
         Cookies.remove('accessToken')
         return null
-        // await Browser.tabs.create({ url: 'https://chat.openai.com/auth/login' })
     }
 
+    if (response.status === 200) {
+        const data = await response.json()
+        Cookies.set('accessToken', data.accessToken, { expires: new Date(data.expires).getTime() })
+        return data.accessToken
+    }
     return null
 }
 
