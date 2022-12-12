@@ -1,20 +1,36 @@
 import { v4 as uuid } from 'uuid'
 import extractJsonFromString from 'extract-json-from-string'
 import Cookies from 'js-cookie'
+import Browser from 'webextension-polyfill'
 
 export const getAccessToken = async (): Promise<any> => {
     if (Cookies.get('accessToken') !== undefined) {
         return Cookies.get('accessToken')
     }
     const url = 'https://chat.openai.com/api/auth/session'
-    const response = await fetch(url)
+    const response = await fetch(url, {
+        headers: {
+            'user-agent':
+                'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/107.0.0.0 Safari/537.36',
+            cookie: await getCookies(),
+        },
+    })
     const data = await response.json()
     if (response.status === 200) {
         Cookies.set('accessToken', data.accessToken, { expires: new Date(data.expires).getTime() })
         return data.accessToken
+    } else if (response.status === 403) {
+        Cookies.remove('accessToken')
+        return null
+        // await Browser.tabs.create({ url: 'https://chat.openai.com/auth/login' })
     }
 
     return null
+}
+
+export const getCookies = async (): Promise<string> => {
+    const cookies = await Browser.cookies.getAll({ url: 'https://chat.openai.com' })
+    return cookies.map((cookie) => `${cookie.name}=${cookie.value}`).join('; ')
 }
 
 export const postConversation = async (
