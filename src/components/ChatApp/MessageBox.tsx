@@ -1,5 +1,5 @@
-import { Box, Flex, Text } from '@mantine/core'
-import { OpenAi } from '../OpenAi'
+import { Box, Flex, Text } from '@chakra-ui/react'
+import { OpenAi } from '../OpenAI'
 
 interface Props {
     isMe?: boolean

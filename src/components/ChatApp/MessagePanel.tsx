@@ -1,8 +1,8 @@
 import { MessageBox } from './MessageBox'
-import { Box, Divider, Stack } from '@mantine/core'
 import { IMessage, useAppStore } from '../../stores'
 import { useEffect, useRef } from 'react'
 import { ErrorMessageBox } from './ErrorMessageBox'
+import { Box, Divider, Stack } from '@chakra-ui/react'
 
 export const MessagePanel = (): JSX.Element => {
     const ref = useRef<HTMLDivElement>(null)

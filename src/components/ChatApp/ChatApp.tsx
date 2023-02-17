@@ -1,4 +1,4 @@
-import { Box, Flex } from '@mantine/core'
+import { Box, Flex } from '@chakra-ui/react'
 import { memo, useRef } from 'react'
 import Browser from 'webextension-polyfill'
 import { useAppStore } from '../../stores'

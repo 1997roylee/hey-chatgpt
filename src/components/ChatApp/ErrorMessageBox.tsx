@@ -1,6 +1,6 @@
-import { Box, Button, Flex, Text } from '@mantine/core'
+import { Box, Button, Flex, Text } from '@chakra-ui/react'
 import { AppState, useAppStore } from '../../stores'
-import { OpenAi } from '../OpenAi'
+import { OpenAi } from '../OpenAI'
 
 export const ErrorMessageBox = (): JSX.Element => {
     const { setIsReverseProxyMode, isReverseProxyMode } = useAppStore((state: AppState) => ({
@@ -31,7 +31,7 @@ export const ErrorMessageBox = (): JSX.Element => {
                     <Text align='left'>
                         Before you use this extension, you need to log in to OpenAI&apos;s website.{' '}
                         <Text
-                            component='a'
+                            as='a'
                             target='_blank'
                             href={'https://chat.openai.com/auth/login'}
                         >

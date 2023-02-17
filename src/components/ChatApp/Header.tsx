@@ -1,6 +1,6 @@
-import { Box, CloseButton, Flex, Text } from '@mantine/core'
+import { Box, CloseButton, Flex, Text } from '@chakra-ui/react'
 import { AppState, useAppStore } from '../../stores'
-import { OpenAi } from '../OpenAi'
+import { OpenAi } from '../OpenAI'
 
 interface Props {
     onClose?: () => void
@@ -33,7 +33,7 @@ export const Header = ({ onClose }: Props): JSX.Element => {
                         justifyContent: 'flex-end',
                     }}
                 >
-                    <CloseButton onClick={onClose} title='Close popover' size='xl' iconSize={20} />
+                    <CloseButton onClick={onClose} title='Close popover' size='xl' />
                 </Flex>
             </Flex>
         </Box>

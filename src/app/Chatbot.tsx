@@ -1,4 +1,5 @@
-import { Box } from '@mantine/core'
+
+import { Box } from '@chakra-ui/react'
 import { useState } from 'react'
 import { ChatApp, Cursor } from '../components'
 

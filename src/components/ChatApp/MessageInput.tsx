@@ -1,4 +1,4 @@
-import { Box, Input } from '@mantine/core'
+import { Box, Input } from '@chakra-ui/react'
 import { useCallback, useState } from 'react'
 import Browser from 'webextension-polyfill'
 import { AppState, useAppStore } from '../../stores'
