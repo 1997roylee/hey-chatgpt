@@ -12,7 +12,7 @@ export const ask = async (
 ): Promise<void> => {
     const token = options?.proxy ?? false ? '' : await getAccessToken()
 
-    console.log(token);
+    // console.log(token)
     if (token === null || token === undefined) {
         // eslint-disable-next-line n/no-callback-literal
         callback(
