@@ -7,11 +7,10 @@ import createCache from '@emotion/cache'
 import { theme } from './theme'
 
 const root = document.createElement('div')
-root.id = 'hey-chatgpt-app'
+root.id = 'crx-root'
 document.body.appendChild(root)
 
-// eslint-disable-next-line @typescript-eslint/explicit-function-return-type
-const mount = () => {
+;(function () {
     const shadowRoot = root.attachShadow({ mode: 'open' })
     const cache = createCache({
         container: shadowRoot,
@@ -21,8 +20,7 @@ const mount = () => {
     const rootElement = document.createElement('main')
     shadowRoot.appendChild(rootElement)
 
-    const reactRoot = ReactDOM.createRoot(rootElement)
-    reactRoot.render(
+    ReactDOM.createRoot(rootElement).render(
         <React.StrictMode>
             <CacheProvider value={cache}>
                 <ChakraBaseProvider theme={theme}>
@@ -31,10 +29,4 @@ const mount = () => {
             </CacheProvider>
         </React.StrictMode>,
     )
-
-    return (): void => {
-        reactRoot.unmount()
-    }
-}
-
-mount()
+})()
