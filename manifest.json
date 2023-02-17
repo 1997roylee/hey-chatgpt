@@ -8,8 +8,8 @@
         "default_title": "Open the popup"
     },
     "icons": {
-        "16": "logo600.png",
-        "48": "logo600.png",
+        "16": "logo192.png",
+        "48": "logo192.png",
         "128": "logo600.png"
     },
     "host_permissions": [

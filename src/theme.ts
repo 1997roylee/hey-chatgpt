@@ -59,7 +59,7 @@ const components = {
         baseStyle: {
             color: '#000',
             fontWeight: 400,
-        }
+        },
     }),
     Button: mergeThemeOverride(Button, {
         baseStyle: {
@@ -91,7 +91,7 @@ export const theme = extendBaseTheme({
             },
             main: {
                 color: '#000',
-            }
-        }
-    }
+            },
+        },
+    },
 })
