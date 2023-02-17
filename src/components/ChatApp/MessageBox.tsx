@@ -1,5 +1,5 @@
 import { Box, Flex, Text } from '@chakra-ui/react'
-import { OpenAi } from '../OpenAI'
+import { OpenAI } from '../OpenAI'
 
 interface Props {
     isMe?: boolean
@@ -8,15 +8,10 @@ interface Props {
 
 export const MessageBox = ({ isMe = false, message = '' }: Props): JSX.Element => {
     return (
-        <Box bg={isMe ? '#eee' : '#fff'} p={12} w='auto'>
+        <Box bg={isMe ? '#eee' : '#fff'} p={3} w='auto'>
             <Flex w='100%'>
-                <Box
-                    sx={{
-                        width: 24,
-                    }}
-                    mr={12}
-                >
-                    {!isMe ? <OpenAi w={24} /> : null}
+                <Box w={'28px'} mr={1}>
+                    {!isMe ? <OpenAI w={6} /> : null}
                 </Box>
                 <Box
                     sx={{

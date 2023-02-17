@@ -1,8 +1,8 @@
-import { Box, Text } from "@chakra-ui/react"
+import { Box, Text } from '@chakra-ui/react'
 
 export const Copyright = (): JSX.Element => {
     return (
-        <Box sx={{ paddingTop: 4, paddingBottom: 4 }}>
+        <Box sx={{ paddingTop: 1, paddingBottom: 1 }}>
             <Text
                 fontSize={14}
                 align='center'

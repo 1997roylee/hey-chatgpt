@@ -41,9 +41,11 @@ export const ChatApp = ({ onClose }: Props): JSX.Element => {
                 width: 370,
                 height: 660,
                 position: 'fixed',
+                zIndex: 99999,
                 bottom: 0,
-                right: 24,
+                right: 6,
                 background: '#fff',
+                // position: 'relative',
                 borderRadius: '24px 24px 0px 0px',
                 '--shadow-1': 'rgba(0, 0, 0, 0.1)',
                 '--shadow-2': 'rgba(0, 0, 0, 0.2)',
@@ -53,7 +55,12 @@ export const ChatApp = ({ onClose }: Props): JSX.Element => {
         >
             <Header onClose={onClose} />
             <FancyMessagePanel />
-            <Box sx={{ position: 'relative', paddingTop: 16, borderTop: '1px solid #eee' }}>
+            <Box
+                left={0}
+                right={0}
+                bottom={0}
+                sx={{ position: 'absolute', paddingTop: 1, borderTop: '1px solid #eee' }}
+            >
                 <MessageInput />
                 <Copyright />
             </Box>

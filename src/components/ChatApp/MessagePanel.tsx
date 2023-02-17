@@ -23,7 +23,7 @@ export const MessagePanel = (): JSX.Element => {
             sx={{
                 flex: 1,
                 overflowY: 'scroll',
-                paddingBottom: 40,
+                paddingBottom: 10,
             }}
         >
             <Box>
@@ -36,7 +36,7 @@ export const MessagePanel = (): JSX.Element => {
                                 <MessageBox isMe={message.sender === 'me'} message={message.text} />
                             )}
 
-                            {index < getMessageList().length - 1 && <Divider color='#eee' />}
+                            {index < getMessageList().length - 1 && <Divider my={0} color='#eee' />}
                         </Box>
                     )
                 })}

@@ -1,6 +1,6 @@
 import { Box, CloseButton, Flex, Text } from '@chakra-ui/react'
 import { AppState, useAppStore } from '../../stores'
-import { OpenAi } from '../OpenAI'
+import { OpenAI } from '../OpenAI'
 
 interface Props {
     onClose?: () => void
@@ -14,13 +14,13 @@ export const Header = ({ onClose }: Props): JSX.Element => {
     return (
         <Box
             sx={{
-                padding: 16,
+                padding: 4,
                 borderBottom: '1px solid #eee',
             }}
         >
             <Flex align={'center'}>
-                <Box w={32} h={32} mr={16}>
-                    <OpenAi w={32} h={32} />
+                <Box w={8} h={8} mr={4}>
+                    <OpenAI w={8} h={8} />
                     {/* <Image w={32} h={32} src={Openai} alt='Openai' /> */}
                 </Box>
                 <Box>
