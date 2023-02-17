@@ -13,6 +13,7 @@
     "@chakra-ui/react": "^2.5.1",
     "@emotion/react": "^11.10.6",
     "@emotion/styled": "^11.10.6",
+    "@loadable/component": "^5.15.3",
     "extract-json-from-string": "^1.0.1",
     "framer-motion": "^9.0.4",
     "js-cookie": "^3.0.1",
@@ -25,6 +26,7 @@
   "devDependencies": {
     "@crxjs/vite-plugin": "^1.0.14",
     "@types/js-cookie": "^3.0.2",
+    "@types/loadable__component": "^5.13.4",
     "@types/node": "^18.11.11",
     "@types/react": "^18.0.0",
     "@types/react-dom": "^18.0.0",
