@@ -1,12 +1,12 @@
-import { extendBaseTheme, mergeThemeOverride } from '@chakra-ui/theme-utils';
-import chakraTheme from '@chakra-ui/theme';
+import { extendBaseTheme, mergeThemeOverride } from '@chakra-ui/theme-utils'
+import chakraTheme from '@chakra-ui/theme'
 
 const {
     // Select,
     // Tabs,
     Spinner,
     // Popover,
-    Progress,
+    // Progress,
     // NumberInput,
     // PinInput,
     Menu,
@@ -24,11 +24,11 @@ const {
     // Container,
     Divider,
     CloseButton,
-    Alert,
+    // Alert,
     // Avatar,
     // Textarea,
     // Badge,
-} = chakraTheme.components;
+} = chakraTheme.components
 
 // const fonts = {
 //     heading: `'Outfit', sans-serif`,
@@ -41,31 +41,29 @@ const components = {
     // Drawer,
     Divider,
     CloseButton,
-    Alert,
+    // Alert,
     // Avatar,
     // Tabs,
     // Spinner,
     // Textarea,
     // Popover,
-    Progress,
+    // Progress,
     // NumberInput,
     // PinInput,
     Menu,
     Input,
     Checkbox,
     Skeleton,
-    Text,
-    Spinner: mergeThemeOverride(Spinner, {
-        sizes: {
-            '2xl': {
-                width: '12rem',
-                height: '12rem',
-            },
-        },
+    Spinner,
+    Text: mergeThemeOverride(Text, {
+        baseStyle: {
+            color: '#000',
+            fontWeight: 400,
+        }
     }),
     Button: mergeThemeOverride(Button, {
         baseStyle: {
-            fontWeight: 700,
+            fontWeight: 400,
         },
         sizes: {
             lg: {
@@ -82,8 +80,18 @@ const components = {
             },
         },
     }),
-};
+}
 
 export const theme = extendBaseTheme({
     components,
-});
+    global: {
+        styles: {
+            body: {
+                color: '#000',
+            },
+            main: {
+                color: '#000',
+            }
+        }
+    }
+})
