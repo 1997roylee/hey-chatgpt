@@ -13,7 +13,6 @@
     "@chakra-ui/react": "^2.5.1",
     "@emotion/react": "^11.10.6",
     "@emotion/styled": "^11.10.6",
-    "@loadable/component": "^5.15.3",
     "extract-json-from-string": "^1.0.1",
     "framer-motion": "^9.0.4",
     "js-cookie": "^3.0.1",
