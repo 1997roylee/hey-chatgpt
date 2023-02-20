@@ -18,7 +18,7 @@ const {
     // Heading,
     Button,
     Input,
-    Checkbox,
+    // Checkbox,
     Skeleton,
     // Drawer,
     // Container,
@@ -52,18 +52,19 @@ const components = {
     // PinInput,
     Menu,
     Input,
-    Checkbox,
+    // Checkbox,
     Skeleton,
     Spinner,
     Text: mergeThemeOverride(Text, {
         baseStyle: {
-            color: '#000',
+            color: '#111111',
             fontWeight: 400,
         },
     }),
     Button: mergeThemeOverride(Button, {
         baseStyle: {
             fontWeight: 400,
+            borderRadius: 'full',
         },
         sizes: {
             lg: {
@@ -84,14 +85,4 @@ const components = {
 
 export const theme = extendBaseTheme({
     components,
-    global: {
-        styles: {
-            body: {
-                color: '#000',
-            },
-            main: {
-                color: '#000',
-            },
-        },
-    },
 })

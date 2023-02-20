@@ -2,7 +2,6 @@ import { Box, Flex } from '@chakra-ui/react'
 import { memo, useRef } from 'react'
 import Browser from 'webextension-polyfill'
 import { useAppStore } from '../../stores'
-import { Copyright } from './Copyright'
 import { Header } from './Header'
 import { MessageInput } from './MessageInput'
 import { MessagePanel } from './MessagePanel'
@@ -35,23 +34,7 @@ export const ChatApp = ({ onClose }: Props): JSX.Element => {
 
     return (
         <Flex
-            sx={{
-                maxWidth: 'calc(100% - 40px)',
-                maxHeight: 'calc(100% - 40px)',
-                width: 370,
-                height: 660,
-                position: 'fixed',
-                zIndex: 99999,
-                bottom: 0,
-                right: 6,
-                background: '#fff',
-                // position: 'relative',
-                borderRadius: '24px 24px 0px 0px',
-                '--shadow-1': 'rgba(0, 0, 0, 0.1)',
-                '--shadow-2': 'rgba(0, 0, 0, 0.2)',
-                flexDirection: 'column',
-                boxShadow: '0 2px 4px var(--shadow-1),0 12px 28px var(--shadow-2)',
-            }}
+            flexDirection={'column'}
         >
             <Header onClose={onClose} />
             <FancyMessagePanel />
@@ -59,10 +42,10 @@ export const ChatApp = ({ onClose }: Props): JSX.Element => {
                 left={0}
                 right={0}
                 bottom={0}
-                sx={{ position: 'absolute', paddingTop: 1, borderTop: '1px solid #eee' }}
+                bg='#fff'
+                position='absolute'
             >
                 <MessageInput />
-                <Copyright />
             </Box>
         </Flex>
     )
