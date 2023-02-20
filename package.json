@@ -1,5 +1,5 @@
 {
-  "name": "dev-openai",
+  "name": "hey-chatgpt",
   "private": true,
   "scripts": {
     "dev": "vite",
