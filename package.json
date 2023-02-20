@@ -10,9 +10,7 @@
     "format": "prettier --write 'src/**/*.{js,jsx,ts,tsx,css,md,json}' --config ./.prettierrc"
   },
   "dependencies": {
-    "@chakra-ui/react": "^2.4.2",
     "@emotion/react": "^11.10.6",
-    "@emotion/styled": "^11.10.6",
     "extract-json-from-string": "^1.0.1",
     "framer-motion": "^9.0.4",
     "js-cookie": "^3.0.1",
