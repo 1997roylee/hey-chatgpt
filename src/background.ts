@@ -1,28 +1,23 @@
 import Browser from 'webextension-polyfill'
-
 import { extractStream, getAccessToken, postConversation } from './utils/request'
 
 export const ask = async (
     question: string,
     parentMessageId: string,
     callback: (answer: any, error?: string) => void,
-    options?: {
-        proxy?: boolean
-    },
 ): Promise<void> => {
-    const token = options?.proxy ?? false ? '' : await getAccessToken()
-
+    const token = await getAccessToken()
     // console.log(token)
     if (token === null || token === undefined) {
         // eslint-disable-next-line n/no-callback-literal
         callback(
             '',
-            "Before you use this extension, you need to log in to OpenAI's website. https://chat.openai.com/auth/login",
+            'Please login and pass Cloudflare check at chat.openai.com. https://chat.openai.com/auth/login',
         )
         return
     }
 
-    const response = await postConversation(question, token, parentMessageId, options?.proxy)
+    const response = await postConversation(question, token, parentMessageId)
 
     for await (const answer of extractStream(response)) {
         callback(answer)
@@ -34,18 +29,16 @@ export const onMessageListener = async (
         type: string
         payload: string
         parentMessageId: string
-        proxy?: boolean
+        // proxy?: boolean
     },
     sender: Browser.Runtime.MessageSender,
 ): Promise<void> => {
-    void ask(
-        msg.payload,
-        msg.parentMessageId,
-        (answer: any, error?: string) => {
+    if (msg.type === 'chat')
+        void ask(msg.payload, msg.parentMessageId, (answer: any, error?: string) => {
             if (error !== undefined) {
                 void Browser.tabs.sendMessage(sender?.tab?.id as number, {
                     id: 'Error',
-                    text: 'Error: ' + error,
+                    text: error,
                 })
                 return
             }
@@ -54,11 +47,9 @@ export const onMessageListener = async (
                 id: answer?.conversation_id,
                 text: answer?.message?.content?.parts[0] ?? '',
             })
-        },
-        {
-            proxy: msg.proxy,
-        },
-    )
+        })
+    // else if (msg.type === 'popup')
+    //     void Browser.action.openPopup()
 }
 
 Browser.runtime.onMessage.addListener(onMessageListener)

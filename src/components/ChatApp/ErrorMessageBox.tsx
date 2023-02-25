@@ -1,6 +1,9 @@
-import { Box, Button, Flex, Text } from '@chakra-ui/react'
+// import { Box, Button, Flex, Link, Text } from '@theme-ui/components'
 // import { AppState, useAppStore } from '../../stores'
-import { OpenAI } from '../OpenAI'
+// import { OpenAI } from '../OpenAI'
+
+import { Box } from "@mui/system"
+import { Button, Flex, Text } from "../../ui"
 
 export const ErrorMessageBox = (): JSX.Element => {
     // const { setIsReverseProxyMode, isReverseProxyMode } = useAppStore((state: AppState) => ({
@@ -13,24 +16,32 @@ export const ErrorMessageBox = (): JSX.Element => {
     // }
 
     return (
-        <Box bg={'#fff'} p={3} w='auto'>
-            <Flex w='100%'>
-                <Box width='28px' mr={1}>
-                    <OpenAI w={6} />
+        <Box sx={{
+            backgroundColor: '#fff'
+        }} p={3}>
+            <Flex>
+                <Box sx={{
+                    width: 28
+                }} mr={1}>
+                    {/* <OpenAI w={6} /> */}
                 </Box>
                 <Box
                     sx={{
                         flex: 1,
                     }}
                 >
-                    <Text align='left' mb={1}>
+                    <Text sx={{
+                        textAlign: 'left'
+                    }} mb={1}>
                         {/* Before you use this extension, you need to log in to OpenAI&apos;s website.{' '} */}
-                        <Text as='a' target='_blank' href={'https://chat.openai.com/auth/login'}>
+                        <Box component='a' target='_blank' href={'https://chat.openai.com/auth/login'}>
                             Please login and pass Cloudflare check at chat.openai.com
-                        </Text>
+                        </Box>
                     </Text>
                     <Button
-                        fontWeight={400}
+                        sx={{
+                            fontWeight: 400
+                        }}
                         as='a'
                         target='_blank'
                         href={'https://chat.openai.com/auth/login'}

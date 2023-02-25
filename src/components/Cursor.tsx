@@ -1,6 +1,5 @@
-import { Box } from '@chakra-ui/react'
-import { motion } from 'framer-motion'
-import { OpenAI } from './OpenAI'
+import { Box } from '@theme-ui/components'
+// import { OpenAI } from './OpenAI'
 
 interface Props {
     onClick?: () => void
@@ -12,9 +11,10 @@ export const Cursor = ({ onClick }: Props): JSX.Element => {
             sx={{
                 zIndex: 9999,
                 position: 'relative',
+                right: 6,
+                bottom: 6,
             }}
-            right={6}
-            bottom={6}
+            p={4}
             onClick={onClick}
         >
             <Box
@@ -30,13 +30,14 @@ export const Cursor = ({ onClick }: Props): JSX.Element => {
                     padding: 2,
                 }}
             >
-                <motion.div
+                {/* <OpenAI /> */}
+                {/* <motion.div
                     initial={{ opacity: 0, scale: 0.5 }}
                     animate={{ opacity: 1, scale: 1 }}
                     transition={{ duration: 0.21 }}
                 >
                     <OpenAI />
-                </motion.div>
+                </motion.div> */}
             </Box>
         </Box>
     )

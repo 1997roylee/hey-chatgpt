@@ -1,1 +1,1 @@
-export { default as AdditionalResult } from './AdditionalResult';
+export { default as AdditionalResult } from './AdditionalResult'

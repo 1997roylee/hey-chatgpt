@@ -2,7 +2,9 @@ import { MessageBox } from './MessageBox'
 import { IMessage, useAppStore } from '../../stores'
 import { useEffect, useRef } from 'react'
 import { ErrorMessageBox } from './ErrorMessageBox'
-import { Box, Divider, Stack } from '@chakra-ui/react'
+import { Box, Stack } from '@mui/system'
+import { Divider } from '../../ui'
+// import { Box, Divider, Stack } from '@chakra-ui/react'
 
 export const MessagePanel = (): JSX.Element => {
     const ref = useRef<HTMLDivElement>(null)

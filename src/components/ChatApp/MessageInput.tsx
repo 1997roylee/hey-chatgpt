@@ -1,18 +1,18 @@
-import { Input, Icon, Flex, IconButton, InputGroup, InputLeftElement } from '@chakra-ui/react'
+// import { Input, Icon, Flex, IconButton, InputGroup, InputLeftElement } from '@chakra-ui/react'
 import { useCallback, useState } from 'react'
 import Browser from 'webextension-polyfill'
 import { IoChatbubbleOutline, IoReturnUpBackOutline } from 'react-icons/io5'
 // import { BsChatDots, BsReply } from 'react-icons/bs'
 import { AppState, useAppStore } from '../../stores'
+import { Flex } from '../../ui'
 
 export const MessageInput = (): JSX.Element => {
     const [value, setValue] = useState<string>('')
-    const { addMessage, setIsLoading, isReverseProxyMode, lastConversationId } = useAppStore(
-        ({ lastConversationId, addMessage, setIsLoading, isReverseProxyMode }: AppState) => ({
+    const { addMessage, setIsLoading, lastConversationId } = useAppStore(
+        ({ lastConversationId, addMessage, setIsLoading }: AppState) => ({
             lastConversationId,
             addMessage,
             setIsLoading,
-            isReverseProxyMode,
         }),
     )
     const handleChange = useCallback((event: any) => {
@@ -34,7 +34,7 @@ export const MessageInput = (): JSX.Element => {
             type: 'chat',
             payload: value,
             parentMessageId: lastConversationId,
-            proxy: isReverseProxyMode,
+            // proxy: isReverseProxyMode,
         })
     }
 
@@ -46,7 +46,7 @@ export const MessageInput = (): JSX.Element => {
 
     return (
         <Flex mx={4} my={3} alignItems='center' p={1} boxShadow='0px 0px 5px 0px rgba( 0,0,0,.1)'>
-            <InputGroup>
+            {/* <InputGroup>
                 <InputLeftElement position='relative'>
                     <Icon as={IoChatbubbleOutline} w={5} h={5} color='rgb(68, 68, 68)' />
                 </InputLeftElement>
@@ -67,19 +67,19 @@ export const MessageInput = (): JSX.Element => {
                         },
                         '&:-ms-input-placeholder': {
                             color: 'rgb(68, 68, 68)',
-                        }
+                        },
                     }}
                     autoFocus
                 />
-            </InputGroup>
+            </InputGroup> */}
 
-            <IconButton
+            {/* <IconButton
                 onClick={handleSubmit}
                 ml={1}
                 variant='ghost'
                 aria-label='Send'
                 icon={<Icon as={IoReturnUpBackOutline} color='rgb(68, 68, 68)' w={5} h={5} />}
-            />
+            /> */}
         </Flex>
     )
 }
