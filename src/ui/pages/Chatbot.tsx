@@ -1,5 +1,5 @@
 import { useState } from 'react'
-import { ChatApp, Cursor } from '../components'
+import { ChatApp, Cursor } from 'ui/components/app'
 import { Box } from '@mui/system'
 
 const Chatbot = (): JSX.Element => {

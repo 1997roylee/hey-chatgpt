@@ -1,6 +1,6 @@
 // import { Box, CloseButton, Flex, Text } from '@chakra-ui/react'
 import { Box } from '@mui/system'
-import { AppState, useAppStore } from '../../stores'
+import { AppState, useAppStore } from 'stores'
 import { Flex, Text } from '../../ui'
 // import { OpenAI } from '../OpenAI'
 
@@ -20,14 +20,14 @@ export const Header = ({ onClose }: Props): JSX.Element => {
                 borderBottom: '1px solid #eee',
             }}
         >
-            <Flex align={'center'}>
-                <Box w={8} h={8} mr={4}>
+            <Flex alignItems={'center'}>
+                <Box component='div' width={8} height={8} mr={4}>
                     {/* <OpenAI w={8} h={8} /> */}
                     {/* <Image w={32} h={32} src={Openai} alt='Openai' /> */}
                 </Box>
                 <Box>
-                    <Text align='left'>ChatGPT - OpenAI</Text>
-                    <Text align='left'>{isLoading ? 'Loading...' : 'Online'}</Text>
+                    <Text textAlign='left'>ChatGPT - OpenAI</Text>
+                    <Text textAlign='left'>{isLoading ? 'Loading...' : 'Online'}</Text>
                 </Box>
                 <Flex
                     sx={{

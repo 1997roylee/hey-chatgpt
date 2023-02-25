@@ -20,7 +20,8 @@
         "cookies"
     ],
     "background": {
-        "service_worker": "src/background.ts"
+        "service_worker": "src/Background.ts",
+        "type": "module"
     },
     "content_scripts": [
         {
@@ -29,7 +30,7 @@
                 "https://*/*"
             ],
             "js": [
-                "src/Content.tsx"
+                "src/apps/Content.tsx"
             ]
         }
     ]

@@ -1,5 +1,5 @@
 import { MessageBox } from './MessageBox'
-import { IMessage, useAppStore } from '../../stores'
+import { IMessage, useAppStore } from 'stores'
 import { useEffect, useRef } from 'react'
 import { ErrorMessageBox } from './ErrorMessageBox'
 import { Box, Stack } from '@mui/system'
@@ -38,7 +38,7 @@ export const MessagePanel = (): JSX.Element => {
                                 <MessageBox isMe={message.sender === 'me'} message={message.text} />
                             )}
 
-                            {index < getMessageList().length - 1 && <Divider my={0} color='#eee' />}
+                            {index < getMessageList().length - 1 && <Divider color='#eee' />}
                         </Box>
                     )
                 })}

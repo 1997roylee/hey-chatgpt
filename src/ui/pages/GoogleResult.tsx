@@ -1,16 +1,18 @@
 import { Box } from '@mui/system'
-import { AdditionalResult } from '../components/AdditionalResult'
+import { AdditionalResult } from 'ui/components/app'
 import { useEffect, useState } from 'react'
 import Browser from 'webextension-polyfill'
-import { Button, Divider } from '../ui'
+import { Button, Divider } from 'ui/components'
 
 export default function GoogleResult(): JSX.Element {
     const [message, setMessage] = useState('')
+    const [status, setStatus] = useState<'loading' | 'error' | 'success'>('loading')
     const [isLoading, setIsLoading] = useState(true)
 
     Browser.runtime.onMessage.addListener((message) => {
         setIsLoading(false)
-        if (message.id === 'Error') setMessage(message.text)
+        console.log(message)
+        if (message.id === 'Error') setStatus('error')
         else setMessage(message.text)
     })
 
@@ -18,9 +20,6 @@ export default function GoogleResult(): JSX.Element {
         const params = new URL(window?.location.href).searchParams
         const q = params.get('q')
         setIsLoading(true)
-        void Browser.runtime.sendMessage({
-            type: 'popup',
-        })
         void Browser.runtime.sendMessage({
             type: 'chat',
             payload: q,
@@ -36,18 +35,10 @@ export default function GoogleResult(): JSX.Element {
                 border: '1px solid #ebebeb',
             }}
         >
-            <AdditionalResult result={message} isLoading={isLoading} />
+            <AdditionalResult status={status} result={message} isLoading={isLoading} />
             <Divider />
             <Box p={4} px={5}>
-                <Button
-                    sx={{
-                        borderRadius: '50%',
-                        width: '100%',
-                    }}
-                    background='#f1f3f4'
-                >
-                    Let&apos;s Chat
-                </Button>
+                <Button>Let&apos;s Chat</Button>
             </Box>
         </Box>
     )

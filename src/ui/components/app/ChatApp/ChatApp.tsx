@@ -1,6 +1,6 @@
 import { memo, useRef } from 'react'
 import Browser from 'webextension-polyfill'
-import { useAppStore } from '../../stores'
+import { useAppStore } from 'stores'
 import { Header } from './Header'
 import { MessageInput } from './MessageInput'
 import { MessagePanel } from './MessagePanel'
@@ -37,7 +37,7 @@ export const ChatApp = ({ onClose }: Props): JSX.Element => {
         <Flex flexDirection={'column'}>
             <Header onClose={onClose} />
             <FancyMessagePanel />
-            <Box left={0} right={0} bottom={0} bg='#fff' position='absolute'>
+            <Box left={0} right={0} bottom={0} bgcolor='#fff' position='absolute'>
                 <MessageInput />
             </Box>
         </Flex>

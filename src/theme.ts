@@ -1,5 +1,5 @@
-import { createTheme } from "@mui/system";
+import { createTheme } from '@mui/system'
 
-export default createTheme({
-    spacing: 4
+export const theme = createTheme({
+    spacing: 4,
 })

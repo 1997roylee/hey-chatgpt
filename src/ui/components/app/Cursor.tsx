@@ -1,5 +1,4 @@
-import { Box } from '@theme-ui/components'
-// import { OpenAI } from './OpenAI'
+import { Box } from '@mui/system'
 
 interface Props {
     onClick?: () => void

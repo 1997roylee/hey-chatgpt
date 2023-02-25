@@ -1,6 +1,5 @@
-
 import ReactDOM from 'react-dom/client'
-import theme from '../theme'
+import { theme } from '../theme'
 import React from 'react'
 import { ThemeProvider } from '@mui/system'
 import { CacheProvider } from '@emotion/react'
@@ -11,11 +10,15 @@ interface Config {
     props: any
 }
 
-export const render = (target: Element, Component: React.FunctionComponent, config: Config): void => {
+export const render = (
+    target: Element,
+    Component: React.FunctionComponent,
+    config: Config,
+): void => {
     const { shadowRoot = false, props } = config
 
     const root = document.createElement('div')
-    console.log(root.firstChild)
+    // console.log(root.firstChild)
     target.insertBefore(root, target.firstChild)
 
     if (shadowRoot) {
@@ -34,7 +37,7 @@ export const render = (target: Element, Component: React.FunctionComponent, conf
                         <Component {...props} />
                     </ThemeProvider>
                 </CacheProvider>
-            </React.StrictMode>
+            </React.StrictMode>,
         )
     }
 }
