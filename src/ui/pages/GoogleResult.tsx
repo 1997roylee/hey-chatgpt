@@ -1,4 +1,4 @@
-import { Box } from '@mui/system'
+import { Box, Stack } from '@mui/system'
 import { AdditionalResult } from 'ui/components/app'
 import { useEffect, useState } from 'react'
 import Browser from 'webextension-polyfill'
@@ -37,9 +37,22 @@ export default function GoogleResult(): JSX.Element {
         >
             <AdditionalResult status={status} result={message} isLoading={isLoading} />
             <Divider />
-            <Box p={4} px={5}>
-                <Button>Let&apos;s Chat</Button>
-            </Box>
+            <Stack p={4} px={5} spacing={4} direction='row'>
+                {status === 'error' && (
+                    <Box
+                        component='a'
+                        href='https://chat.openai.com/auth/login'
+                        target='_blank'
+                        flex={'50%'}
+                    >
+                        {' '}
+                        <Button variant='outline' width='100%'>
+                            Login
+                        </Button>
+                    </Box>
+                )}
+                <Button flex={'50%'}>Let&apos;s Chat</Button>
+            </Stack>
         </Box>
     )
 }

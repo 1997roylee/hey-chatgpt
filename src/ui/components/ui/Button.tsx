@@ -2,6 +2,7 @@ import { styled, Box, BoxProps } from '@mui/system'
 
 interface ButtonProps extends BoxProps {
     children: React.ReactNode
+    variant?: 'default' | 'outline'
 }
 
 const UnstyledButton = styled(Box)({
@@ -16,12 +17,30 @@ const UnstyledButton = styled(Box)({
     },
 })
 
+const OutlineButton = styled(UnstyledButton)({
+    background: 'transparent',
+    border: '1px solid #1a73e8',
+    color: '#1a73e8',
+    '&:hover': {
+        background: '#1a73e810',
+        boxShadow: 'none',
+        // color: '#fff',
+    },
+})
+
+const VARIANTS = {
+    default: UnstyledButton,
+    outline: OutlineButton,
+}
+
 export const Button = (props: ButtonProps): JSX.Element => {
     const { children, ...rest } = props
 
+    // eslint-disable-next-line @typescript-eslint/strict-boolean-expressions
+    const Component = VARIANTS[props.variant ?? 'default']
     return (
-        <UnstyledButton component='button' {...rest}>
+        <Component component='button' {...rest}>
             {children}
-        </UnstyledButton>
+        </Component>
     )
 }
