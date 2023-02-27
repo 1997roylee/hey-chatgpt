@@ -1,0 +1,27 @@
+---
+name: "pre-release"
+
+on:
+  push:
+
+jobs:
+  lint:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - run: yarn install
+      - run: yarn lint
+
+  build:
+    needs: [lint]
+    name: "Pre Release"
+    runs-on: "ubuntu-latest"
+
+    steps:
+      - uses: actions/checkout@v3
+      - uses: actions/setup-node@v3
+        with:
+          node-version: 16.17
+      - run: yarn install
+      - run: yarn build
+  
