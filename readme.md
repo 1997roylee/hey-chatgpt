@@ -4,20 +4,20 @@
 
 Hey Chatgpt is here to help out:
 
-🔎 ChatGPT for Google: Search ChatGPT results using your keywords. Save time, get quick access to answers.
-⏰ Save time
-💵 Maximize productivity (All-in-one solution)
-🤖 Chat with ChatGPT everywhere
-🚀 Easy access to ChatGPT: Copy and paste your question from a web page to ChatGPT with a shortcut. Get quick and convenient answers to your questions without typing them manually.
-🔒 Privacy first (no tracking at all, your data is yours)
-👌 Simple by design - no overwhelming UI
+- 🔎 ChatGPT for Google: Search ChatGPT results using your keywords. Save time, get quick access to answers.
+- ⏰ Save time
+- 💵 Maximize productivity (All-in-one solution)
+- 🤖 Chat with ChatGPT everywhere
+- 🚀 Easy access to ChatGPT: Copy and paste your question from a web page to ChatGPT with a shortcut. Get quick and convenient answers to your questions without typing them manually.
+- 🔒 Privacy first (no tracking at all, your data is yours)
+- 👌 Simple by design - no overwhelming UI
 
 ## Upcoming
 
-Support all browsers (Firefox, Safari, Edge, Opera, etc.)
-Compose with ChatGPT (Upcoming)
-📝 Write with ChatGPT (Upcoming)
-📚 Read with ChatGPT (Upcoming)
+- Support all browsers (Firefox, Safari, Edge, Opera, etc.)
+- Compose with ChatGPT
+- 📝 Write with ChatGPT
+- 📚 Read with ChatGPT
 
 ## Installation
 
@@ -36,4 +36,12 @@ Compose with ChatGPT (Upcoming)
 
 ## Screenshots
 
+![Screenshot](screenshots/01.png?raw=true)
 
+---
+
+![Screenshot](screenshots/02.png?raw=true)
+
+---
+
+![Screenshot](screenshots/03.png?raw=true)
