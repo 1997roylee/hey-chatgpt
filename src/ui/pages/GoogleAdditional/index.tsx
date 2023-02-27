@@ -4,23 +4,28 @@ import { useCallback, useEffect, useState } from 'react'
 import Browser from 'webextension-polyfill'
 import { Button, Divider } from 'ui/components'
 import { AppState, IMessage, useAppStore } from 'stores/AppStore'
-// import { useDebouncedCallback } from 'use-debounce';
+import { IMessagePayload } from '../../../Background'
 
 export default function GoogleAdditional(): JSX.Element {
     const [message, setMessage] = useState<IMessage>()
     const [status, setStatus] = useState<'loading' | 'error' | 'success'>('loading')
     const [isLoading, setIsLoading] = useState(false)
-    const { setIsOpen } = useAppStore(({ setIsOpen }: AppState) => ({
+    const { setIsOpen, addMessage } = useAppStore(({ setIsOpen, addMessage }: AppState) => ({
         setIsOpen,
+        addMessage,
     }))
 
-    const handleResponse = useCallback((newMessage: IMessage): void => {
+    const handleResponse = useCallback((newMessage: IMessagePayload): void => {
+        const { type, payload } = newMessage
+
+        if (type !== 'google') return
+
         setIsLoading(false)
 
-        if (newMessage.id === 'Error') return setStatus('error')
+        if (payload.id === 'Error') return setStatus('error')
 
         setMessage((message) => {
-            if (newMessage.id === message?.id || message === undefined) return newMessage
+            if (payload.id === message?.id || message === undefined) return payload
 
             Browser.runtime.onMessage.removeListener(handleResponse)
             return message
@@ -28,15 +33,12 @@ export default function GoogleAdditional(): JSX.Element {
     }, [])
 
     useEffect(() => {
-        console.log('init')
-        if (isLoading) return
-
         const params = new URL(window?.location.href).searchParams
         const q = params.get('q')
         Browser.runtime.onMessage.addListener(handleResponse)
         setIsLoading(true)
         void Browser.runtime.sendMessage({
-            type: 'chat',
+            type: 'google',
             payload: q,
             parentMessageId: '',
         })
@@ -55,6 +57,13 @@ export default function GoogleAdditional(): JSX.Element {
     }
 
     const handleChat = (): void => {
+        addMessage({
+            text: message?.text ?? '',
+            id: message?.id ?? '',
+            sender: 'bot',
+            parentMessageId: message?.parentMessageId,
+            index: 0,
+        })
         setIsOpen(true)
     }
 

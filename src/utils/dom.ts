@@ -46,7 +46,8 @@ export const getSelectionPosition = (): { x: number; y: number } => {
     if (selection != null) {
         const range = selection.getRangeAt(0)
         const rect = range.getBoundingClientRect()
-        return { x: rect.x, y: rect.y }
+        console.log(rect)
+        return { x: rect.x, y: rect.y + window.scrollY }
     }
     return { x: 0, y: 0 }
 }

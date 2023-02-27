@@ -20,12 +20,15 @@ export const ChatApp = ({ onClose }: Props): JSX.Element => {
 
     useEffect(() => {
         Browser.runtime.onMessage.addListener((message) => {
+            if (message.type !== 'answer') return
+
+            const payload = message.payload
             setIsLoading(true)
             addMessage({
-                text: message.text,
-                id: message.id,
+                text: payload.text,
+                id: payload.id,
                 sender: 'bot',
-                parentMessageId: message.parentMessageId,
+                parentMessageId: payload.parentMessageId,
             })
             clearTimeout(timeoutHandler.current)
             timeoutHandler.current = setTimeout(() => {

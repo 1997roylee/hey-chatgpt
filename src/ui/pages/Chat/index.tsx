@@ -47,16 +47,21 @@ const Chat = (): JSX.Element => {
         resetSelectionData()
     }
 
+    const handleSelectionChange = (): void => {
+        const selectedText = getSelectionText()
+        if (selectedText === '') {
+            resetSelectionData()
+        } else {
+            setSelectionPosition(getSelectionPosition())
+            setSelectedValue(selectedText)
+        }
+    }
+
     useEffect(() => {
-        document.addEventListener('selectionchange', function () {
-            const selectedText = getSelectionText()
-            if (selectedText === '') {
-                resetSelectionData()
-            } else {
-                setSelectionPosition(getSelectionPosition())
-                setSelectedValue(selectedText)
-            }
-        })
+        document.addEventListener('selectionchange', handleSelectionChange)
+        return () => {
+            document.removeEventListener('selectionchange', handleSelectionChange)
+        }
     }, [])
 
     return (

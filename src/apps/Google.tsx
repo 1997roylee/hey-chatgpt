@@ -1,22 +1,22 @@
 import { render } from 'utils/render'
-// import { isGoogleSearchPage } from '../utils/google'
 import { GoogleAdditional } from 'ui/pages'
-const root = document.createElement('div')
-root.id = 'hey-chatgpt'
+import { waitForElement } from 'utils/dom'
 
-let rightSidebar = document.querySelector('#rhs')
+void waitForElement('#rcnt').then(function (element: Node | Element | HTMLElement) {
+    const root = document.createElement('div')
+    root.id = 'hey-chatgpt'
 
-if (rightSidebar === null) {
-    rightSidebar = document.createElement('div')
-    rightSidebar.id = 'rhs'
-    document.querySelector('#rcnt')?.appendChild(rightSidebar)
-}
+    let rightSidebar = document.querySelector('#rhs')
 
-render(rightSidebar, GoogleAdditional, {
-    shadowRoot: true,
-    props: {
-        style: {
-            flex: 1,
-        },
-    },
+    if (rightSidebar === null) {
+        rightSidebar = document.createElement('div')
+        rightSidebar.id = 'rhs'
+        element.appendChild(rightSidebar)
+    }
+
+    console.log('rightSidebar', rightSidebar)
+
+    render(rightSidebar, GoogleAdditional, {
+        shadowRoot: true,
+    })
 })

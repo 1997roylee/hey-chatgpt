@@ -2,6 +2,15 @@ import Browser from 'webextension-polyfill'
 import { extractStream, getAccessToken, postConversation } from 'utils/request'
 
 let lastTabId = 0
+export interface IMessagePayload {
+    type: string
+    payload: any
+}
+
+// type MessagePayload = {
+//     type: string
+//     payload: any
+// }
 
 export const ask = async (
     question: string,
@@ -26,6 +35,13 @@ export const ask = async (
     }
 }
 
+export const createResponsePayload = (type: 'answer' | 'google', payload: any): IMessagePayload => {
+    return {
+        type,
+        payload,
+    }
+}
+
 export const onMessageListener = async (
     msg: {
         type: string
@@ -39,18 +55,47 @@ export const onMessageListener = async (
         case 'chat':
             void ask(msg.payload, msg.parentMessageId, (answer: any, error?: string) => {
                 if (error !== undefined) {
-                    void Browser.tabs.sendMessage(sender?.tab?.id as number, {
-                        id: 'Error',
-                        text: error,
-                    })
+                    void Browser.tabs.sendMessage(
+                        sender?.tab?.id as number,
+                        createResponsePayload('answer', {
+                            id: 'Error',
+                            text: error,
+                        }),
+                    )
                     return
                 }
 
-                void Browser.tabs.sendMessage(sender?.tab?.id as number, {
-                    id: answer?.message?.id,
-                    parentMessageId: answer?.conversation_id,
-                    text: answer?.message?.content?.parts[0] ?? '',
-                })
+                void Browser.tabs.sendMessage(
+                    sender?.tab?.id as number,
+                    createResponsePayload('answer', {
+                        id: answer?.message?.id,
+                        parentMessageId: answer?.conversation_id,
+                        text: answer?.message?.content?.parts[0] ?? '',
+                    }),
+                )
+            })
+            break
+        case 'google':
+            void ask(msg.payload, msg.parentMessageId, (answer: any, error?: string) => {
+                if (error !== undefined) {
+                    void Browser.tabs.sendMessage(
+                        sender?.tab?.id as number,
+                        createResponsePayload('google', {
+                            id: 'Error',
+                            text: error,
+                        }),
+                    )
+                    return
+                }
+
+                void Browser.tabs.sendMessage(
+                    sender?.tab?.id as number,
+                    createResponsePayload('google', {
+                        id: answer?.message?.id,
+                        parentMessageId: answer?.conversation_id,
+                        text: answer?.message?.content?.parts[0] ?? '',
+                    }),
+                )
             })
             break
         case 'redirect':

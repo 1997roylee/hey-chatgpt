@@ -15,6 +15,14 @@ export default function Store(): JSX.Element {
                     <Text fontSize='1.25rem'>Hey Chatgpt</Text>
                     <Box
                         component='a'
+                        href='https://www.buymeacoffee.com/heychatgpt'
+                        target='_blank'
+                        width='100%'
+                    >
+                        <Button width='100%'>Buy me a coffee</Button>
+                    </Box>
+                    <Box
+                        component='a'
                         href='https://forms.gle/wS6usX5r4mbJJHcS9'
                         target='_blank'
                         width='100%'

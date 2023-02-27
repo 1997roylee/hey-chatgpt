@@ -3,7 +3,7 @@ import { AppState, IMessage, useAppStore } from 'stores'
 import { useEffect, useRef } from 'react'
 import { ErrorMessageBox } from './ErrorMessageBox'
 import { Box, Stack } from '@mui/system'
-import { Divider, DotsLoading } from 'ui/components/ui'
+import { DotsLoading } from 'ui/components/ui'
 
 export const MessagePanel = (): JSX.Element => {
     const ref = useRef<HTMLDivElement>(null)
@@ -19,8 +19,6 @@ export const MessagePanel = (): JSX.Element => {
         if (ref.current != null) ref.current.scrollIntoView({ behavior: 'smooth' })
     }, [lastUpdatedAt])
 
-    console.log(getMessageList())
-
     return (
         <Stack
             spacing={1}
@@ -35,9 +33,9 @@ export const MessagePanel = (): JSX.Element => {
             {getMessageList().map((message: IMessage, index: number) => {
                 return (
                     <>
-                        {message.parentMessageId === undefined && index > 0 && (
+                        {/* {message.parentMessageId === undefined && index > 0 && (
                             <Divider key={`Divider-${index}`} />
-                        )}
+                        )} */}
                         {message.id === 'Error' ? (
                             <ErrorMessageBox />
                         ) : (
