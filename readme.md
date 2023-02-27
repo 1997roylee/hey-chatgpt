@@ -1,14 +1,20 @@
-# Hey Chatgpt
+# Hey Chatgpt (Beta): All-in-one assistants for ChatGPT
 
 "Hey Chatgpt" saves time by letting users ask questions directly to a Chatgpt, without the need for manual searching. It maximizes user value by prioritizing privacy and providing easy access to the chatbot through a shortcut.
+
+---
+
+Install from Chrome Web Store (Upcoming)
+
+---
 
 Hey Chatgpt is here to help out:
 
 - 🔎 ChatGPT for Google: Search ChatGPT results using your keywords. Save time, get quick access to answers.
 - ⏰ Save time
+- 🚀 Highlight any content on the web and get ChatGPT results instantly.
 - 💵 Maximize productivity (All-in-one solution)
 - 🤖 Chat with ChatGPT everywhere
-- 🚀 Easy access to ChatGPT: Copy and paste your question from a web page to ChatGPT with a shortcut. Get quick and convenient answers to your questions without typing them manually.
 - 🔒 Privacy first (no tracking at all, your data is yours)
 - 👌 Simple by design - no overwhelming UI
 
@@ -36,12 +42,8 @@ Hey Chatgpt is here to help out:
 
 ## Screenshots
 
+[![Video](https://img.youtube.com/vi/WJ9G8V0UEXE/0.jpg)](https://www.youtube.com/watch?v=WJ9G8V0UEXE)
+
+---
+
 ![Screenshot](screenshots/01.png?raw=true)
-
----
-
-![Screenshot](screenshots/02.png?raw=true)
-
----
-
-![Screenshot](screenshots/03.png?raw=true)
