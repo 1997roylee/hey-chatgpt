@@ -36,4 +36,12 @@ Hey Chatgpt is here to help out:
 
 ## Screenshots
 
+![Screenshot](screenshots/01.png?raw=true)
 
+---
+
+![Screenshot](screenshots/02.png?raw=true)
+
+---
+
+![Screenshot](screenshots/03.png?raw=true)
