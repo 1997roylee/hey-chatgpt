@@ -1,16 +1,16 @@
 import { MessageBox } from './MessageBox'
-import { IMessage, useAppStore } from 'stores'
+import { AppState, IMessage, useAppStore } from 'stores'
 import { useEffect, useRef } from 'react'
 import { ErrorMessageBox } from './ErrorMessageBox'
 import { Box, Stack } from '@mui/system'
-import { Divider } from '../../ui'
-// import { Box, Divider, Stack } from '@chakra-ui/react'
+import { Divider, DotsLoading } from 'ui/components/ui'
 
 export const MessagePanel = (): JSX.Element => {
     const ref = useRef<HTMLDivElement>(null)
-    const { getMessageList, lastUpdatedAt } = useAppStore((state: any) => ({
+    const { getMessageList, lastUpdatedAt, isLoading } = useAppStore((state: AppState) => ({
         getMessageList: state.getMessageList,
         lastUpdatedAt: state.lastUpdatedAt,
+        isLoading: state.isLoading,
     }))
 
     // console.log(lastUpdatedAt);
@@ -19,31 +19,39 @@ export const MessagePanel = (): JSX.Element => {
         if (ref.current != null) ref.current.scrollIntoView({ behavior: 'smooth' })
     }, [lastUpdatedAt])
 
+    console.log(getMessageList())
+
     return (
         <Stack
-            spacing={0}
+            spacing={1}
             sx={{
+                padding: 4,
                 flex: 1,
                 overflowY: 'scroll',
-                paddingBottom: 10,
+                // paddingBottom: 10,
+                // height: 'calc(100% - 100px)'
             }}
         >
-            <Box>
-                {getMessageList().map((message: IMessage, index: number) => {
-                    return (
-                        <Box key={`Message_${message.id}`}>
-                            {message.id === 'Error' ? (
-                                <ErrorMessageBox />
-                            ) : (
-                                <MessageBox isMe={message.sender === 'me'} message={message.text} />
-                            )}
-
-                            {index < getMessageList().length - 1 && <Divider color='#eee' />}
-                        </Box>
-                    )
-                })}
-                <Box ref={ref} />
-            </Box>
+            {getMessageList().map((message: IMessage, index: number) => {
+                return (
+                    <>
+                        {message.parentMessageId === undefined && index > 0 && (
+                            <Divider key={`Divider-${index}`} />
+                        )}
+                        {message.id === 'Error' ? (
+                            <ErrorMessageBox />
+                        ) : (
+                            <MessageBox isMe={message.sender === 'me'}>{message.text}</MessageBox>
+                        )}
+                    </>
+                )
+            })}
+            {isLoading && (
+                <MessageBox>
+                    <DotsLoading />
+                </MessageBox>
+            )}
+            <Box ref={ref} />
         </Stack>
     )
 }

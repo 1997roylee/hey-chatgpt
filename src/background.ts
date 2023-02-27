@@ -1,13 +1,15 @@
 import Browser from 'webextension-polyfill'
 import { extractStream, getAccessToken, postConversation } from 'utils/request'
 
+let lastTabId = 0
+
 export const ask = async (
     question: string,
     parentMessageId: string,
     callback: (answer: any, error?: string) => void,
 ): Promise<void> => {
     const token = await getAccessToken()
-    // console.log(token)
+    // console.log(token, 1234)
     if (token === null || token === undefined) {
         // eslint-disable-next-line n/no-callback-literal
         callback(
@@ -33,23 +35,38 @@ export const onMessageListener = async (
     },
     sender: Browser.Runtime.MessageSender,
 ): Promise<void> => {
-    console.log(msg)
-    void ask(msg.payload, msg.parentMessageId, (answer: any, error?: string) => {
-        if (error !== undefined) {
-            void Browser.tabs.sendMessage(sender?.tab?.id as number, {
-                id: 'Error',
-                text: error,
-            })
-            return
-        }
+    switch (msg.type) {
+        case 'chat':
+            void ask(msg.payload, msg.parentMessageId, (answer: any, error?: string) => {
+                if (error !== undefined) {
+                    void Browser.tabs.sendMessage(sender?.tab?.id as number, {
+                        id: 'Error',
+                        text: error,
+                    })
+                    return
+                }
 
-        void Browser.tabs.sendMessage(sender?.tab?.id as number, {
-            id: answer?.conversation_id,
-            text: answer?.message?.content?.parts[0] ?? '',
-        })
-    })
-    // else if (msg.type === 'popup')
-    //     void Browser.action.openPopup()
+                void Browser.tabs.sendMessage(sender?.tab?.id as number, {
+                    id: answer?.message?.id,
+                    parentMessageId: answer?.conversation_id,
+                    text: answer?.message?.content?.parts[0] ?? '',
+                })
+            })
+            break
+        case 'redirect':
+            // console.log(lastTabId)
+            void Browser.tabs.update(lastTabId, { active: true })
+            break
+        case 'logon':
+            // console.log(lastTabId)
+            lastTabId = sender?.tab?.id as number
+            break
+        case 'setToken':
+            // console.log(msg.payload)
+            void Browser.storage.local.set({ accessToken: msg.payload })
+    }
 }
 
-Browser.runtime.onMessage.addListener(onMessageListener)
+if (!Browser.runtime.onMessage.hasListener(onMessageListener)) {
+    Browser.runtime.onMessage.addListener(onMessageListener)
+}

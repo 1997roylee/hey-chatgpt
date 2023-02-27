@@ -4,16 +4,16 @@
 
 import { Box } from '@mui/system'
 import { Button, Flex, Text } from '../../ui'
+import Browser from 'webextension-polyfill'
 
 export const ErrorMessageBox = (): JSX.Element => {
-    // const { setIsReverseProxyMode, isReverseProxyMode } = useAppStore((state: AppState) => ({
-    //     setIsReverseProxyMode: state.setIsReverseProxyMode,
-    //     isReverseProxyMode: state.isReverseProxyMode,
-    // }))
-
-    // const handleClick = (): void => {
-    //     setIsReverseProxyMode(!isReverseProxyMode)
-    // }
+    const handleLogon = (): void => {
+        void Browser.runtime.sendMessage({
+            type: 'logon',
+            payload: '',
+        })
+        window.open('https://chat.openai.com/chat')
+    }
 
     return (
         <Box
@@ -25,14 +25,6 @@ export const ErrorMessageBox = (): JSX.Element => {
             <Flex>
                 <Box
                     sx={{
-                        width: 28,
-                    }}
-                    mr={1}
-                >
-                    {/* <OpenAI w={6} /> */}
-                </Box>
-                <Box
-                    sx={{
                         flex: 1,
                     }}
                 >
@@ -40,26 +32,20 @@ export const ErrorMessageBox = (): JSX.Element => {
                         sx={{
                             textAlign: 'left',
                         }}
-                        mb={1}
+                        mb={4}
                     >
-                        {/* Before you use this extension, you need to log in to OpenAI&apos;s website.{' '} */}
-                        <Box
-                            component='a'
-                            target='_blank'
-                            href={'https://chat.openai.com/auth/login'}
-                        >
-                            Please login and pass Cloudflare check at chat.openai.com
-                        </Box>
+                        Please login and pass Cloudflare check at chat.openai.com
                     </Text>
                     <Button
                         sx={{
                             fontWeight: 400,
                         }}
+                        onClick={handleLogon}
                         // component='a'
                         // target='_blank'
                         // href={'https://chat.openai.com/auth/login'}
                     >
-                        Login to OpenAI
+                        Logon OpenAI
                     </Button>
                 </Box>
             </Flex>

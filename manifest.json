@@ -17,7 +17,9 @@
     ],
     "permissions": [
         "activeTab",
-        "cookies"
+        "tabs",
+        "cookies",
+        "storage"
     ],
     "background": {
         "service_worker": "src/Background.ts",
@@ -26,12 +28,33 @@
     "content_scripts": [
         {
             "matches": [
+                "http://*.google.com/search*",
+                "https://*.google.com/search*"
+            ],
+            "js": [
+                "src/apps/Google.tsx"
+            ],
+            "run_at": "document_start"
+        },
+        {
+            "matches": [
+                "http://*.openai.com/chat*",
+                "https://*.openai.com/chat*"
+            ],
+            "js": [
+                "src/apps/Token.tsx"
+            ],
+            "run_at": "document_end"
+        },
+        {
+            "matches": [
                 "http://*/*",
                 "https://*/*"
             ],
             "js": [
-                "src/apps/Content.tsx"
-            ]
+                "src/apps/Chat.tsx"
+            ],
+            "run_at": "document_end"
         }
     ]
 }

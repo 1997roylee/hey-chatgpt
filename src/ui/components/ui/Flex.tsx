@@ -6,9 +6,10 @@ interface FlexProps extends BoxProps {
 
 export const Flex = ({ children, ...rest }: FlexProps): JSX.Element => (
     <Box
-        sx={{
-            display: 'flex',
-        }}
+        display='flex'
+        // sx={{
+        //     display: 'flex',
+        // }}
         {...rest}
     >
         {children}

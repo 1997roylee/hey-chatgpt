@@ -2,13 +2,20 @@
 import { IoCopyOutline } from 'react-icons/io5'
 import { CopyToClipboard } from 'react-copy-to-clipboard'
 import { Flex, Text, Icon } from 'ui/components/ui'
-import { Box } from '@mui/system'
+import { Box, keyframes } from '@mui/system'
 
 interface Props {
     result: string
     isLoading: boolean
     status: 'loading' | 'error' | 'success'
 }
+
+const Loading = keyframes`
+to {
+    opacity: 0.1;
+    // transform: translateY(-16px);
+  }
+`
 
 const AdditionalResult = ({ result, status, isLoading }: Props): JSX.Element => {
     return (
@@ -45,7 +52,15 @@ const AdditionalResult = ({ result, status, isLoading }: Props): JSX.Element => 
                     https://chat.openai.com/auth/login
                 </Text>
             )}
-            <Text>{isLoading && 'Loading...'}</Text>
+            {isLoading && (
+                <Text
+                    sx={{
+                        animation: `${Loading} 0.6s infinite alternate`,
+                    }}
+                >
+                    Loading...
+                </Text>
+            )}
             <Text>{result}</Text>
         </Box>
     )

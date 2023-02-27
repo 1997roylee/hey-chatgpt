@@ -1,12 +1,10 @@
-import { memo, useRef } from 'react'
+import { memo, useEffect, useRef } from 'react'
 import Browser from 'webextension-polyfill'
 import { useAppStore } from 'stores'
-import { Header } from './Header'
+import { ChatAppHeader } from './ChatAppHeader'
 import { MessageInput } from './MessageInput'
 import { MessagePanel } from './MessagePanel'
 import { Flex } from '../../ui'
-import { Box } from '@mui/system'
-
 interface Props {
     onClose?: () => void
 }
@@ -20,26 +18,27 @@ export const ChatApp = ({ onClose }: Props): JSX.Element => {
         setIsLoading: state.setIsLoading,
     }))
 
-    Browser.runtime.onMessage.addListener((message) => {
-        setIsLoading(true)
-        addMessage({
-            text: message.text,
-            id: message.id,
-            sender: 'bot',
+    useEffect(() => {
+        Browser.runtime.onMessage.addListener((message) => {
+            setIsLoading(true)
+            addMessage({
+                text: message.text,
+                id: message.id,
+                sender: 'bot',
+                parentMessageId: message.parentMessageId,
+            })
+            clearTimeout(timeoutHandler.current)
+            timeoutHandler.current = setTimeout(() => {
+                setIsLoading(false)
+            }, 1000)
         })
-        clearTimeout(timeoutHandler.current)
-        timeoutHandler.current = setTimeout(() => {
-            setIsLoading(false)
-        }, 1000)
-    })
+    }, [])
 
     return (
-        <Flex flexDirection={'column'}>
-            <Header onClose={onClose} />
+        <Flex flexDirection={'column'} height='100%'>
+            <ChatAppHeader onClose={onClose} />
             <FancyMessagePanel />
-            <Box left={0} right={0} bottom={0} bgcolor='#fff' position='absolute'>
-                <MessageInput />
-            </Box>
+            <MessageInput />
         </Flex>
     )
 }

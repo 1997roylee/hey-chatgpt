@@ -7,7 +7,7 @@ import createCache from '@emotion/cache'
 
 interface Config {
     shadowRoot?: boolean
-    props: any
+    props?: any
 }
 
 export const render = (
@@ -31,13 +31,12 @@ export const render = (
 
         shadowRoot.appendChild(subRoot)
         ReactDOM.createRoot(subRoot).render(
-            <React.StrictMode>
-                <CacheProvider value={cache}>
-                    <ThemeProvider theme={theme}>
-                        <Component {...props} />
-                    </ThemeProvider>
-                </CacheProvider>
-            </React.StrictMode>,
+            // <React.StrictMode>
+            <CacheProvider value={cache}>
+                <ThemeProvider theme={theme}>
+                    <Component {...props} />
+                </ThemeProvider>
+            </CacheProvider>,
         )
     }
 }

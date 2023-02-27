@@ -2,7 +2,7 @@ import { styled, Box, BoxProps } from '@mui/system'
 
 interface ButtonProps extends BoxProps {
     children: React.ReactNode
-    variant?: 'default' | 'outline'
+    variant?: 'default' | 'outline' | 'ghost'
 }
 
 const UnstyledButton = styled(Box)({
@@ -12,6 +12,7 @@ const UnstyledButton = styled(Box)({
     padding: '12px 16px',
     color: '#fff',
     cursor: 'pointer',
+    transition: 'background 0.2s ease-in-out',
     '&:hover': {
         boxShadow: '0px 0.6px 1.8px rgba(0, 0, 0, 0.12), 0px 3.2px 7.2px rgba(0, 0, 0, 0.16)',
     },
@@ -28,9 +29,22 @@ const OutlineButton = styled(UnstyledButton)({
     },
 })
 
+const GhostButton = styled(UnstyledButton)({
+    background: '#fff',
+    border: '1px solid #fff',
+    color: '#1a73e8',
+    '&:hover': {
+        background: '#1a73e810',
+        boxShadow: 'none',
+        color: '#fff',
+        // color: '#fff',
+    },
+})
+
 const VARIANTS = {
     default: UnstyledButton,
     outline: OutlineButton,
+    ghost: GhostButton,
 }
 
 export const Button = (props: ButtonProps): JSX.Element => {
