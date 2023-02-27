@@ -22,8 +22,7 @@
         "storage"
     ],
     "background": {
-        "service_worker": "src/Background.ts",
-        "type": "module"
+        "service_worker": "src/apps/Background.ts"
     },
     "content_scripts": [
         {
