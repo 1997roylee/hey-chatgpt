@@ -20,6 +20,7 @@ Hey Chatgpt is here to help out:
 
 ## Upcoming
 
+- 🐛 Zero bugs and code coverage
 - Support all browsers (Firefox, Safari, Edge, Opera, etc.)
 - Compose with ChatGPT
 - 📝 Write with ChatGPT
