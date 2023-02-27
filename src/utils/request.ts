@@ -4,18 +4,12 @@ import Cookies from 'js-cookie'
 import Browser from 'webextension-polyfill'
 
 export const getAccessToken = async (): Promise<any> => {
+    // const payload = await Browser.storage.local.get('accessToken')
     if (Cookies.get('accessToken') !== undefined) {
         return Cookies.get('accessToken')
     }
     const url = 'https://chat.openai.com/api/auth/session'
-    const response = await fetch(url, {
-        headers: {
-            'user-agent':
-                'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/107.0.0.0 Safari/537.36',
-            cookie: await getCookies(),
-        },
-    })
-
+    const response = await fetch(url)
     if (response.status === 403) {
         Cookies.remove('accessToken')
         return null
@@ -31,6 +25,7 @@ export const getAccessToken = async (): Promise<any> => {
 
 export const getCookies = async (): Promise<string> => {
     const cookies = await Browser.cookies.getAll({ url: 'https://chat.openai.com' })
+    // console.log(cookies)
     return cookies.map((cookie) => `${cookie.name}=${cookie.value}`).join('; ')
 }
 
@@ -38,13 +33,10 @@ export const postConversation = async (
     message: string,
     token: string,
     parentId?: string,
-    proxy?: boolean,
+    // proxy?: boolean,
 ): Promise<any> => {
     const controller = new AbortController()
-    const url =
-        proxy ?? false
-            ? 'https://gpt.chatapi.art/backend-api/conversation'
-            : 'https://chat.openai.com/backend-api/conversation'
+    const url = 'https://chat.openai.com/backend-api/conversation'
 
     return await fetch(url, {
         method: 'POST',

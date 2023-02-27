@@ -1,15 +1,15 @@
 {
-    "name": "ChatGPT Everywhere",
+    "name": "Hey ChatGPT",
     "description": "Feel free to use ChatGPT Everywhere to chat with ChatGPT on your tabs. This extension is not affiliated with ChatGPT in any way.",
-    "version": "0.0.5",
+    "version": "0.1.0",
     "manifest_version": 3,
     "action": {
         "default_popup": "index.html",
         "default_title": "Open the popup"
     },
     "icons": {
-        "16": "logo192.png",
-        "48": "logo192.png",
+        "16": "logo600.png",
+        "48": "logo600.png",
         "128": "logo600.png"
     },
     "host_permissions": [
@@ -17,20 +17,44 @@
     ],
     "permissions": [
         "activeTab",
-        "cookies"
+        "tabs",
+        "cookies",
+        "storage"
     ],
     "background": {
-        "service_worker": "src/background.ts"
+        "service_worker": "src/Background.ts",
+        "type": "module"
     },
     "content_scripts": [
+        {
+            "matches": [
+                "http://*.google.com/search*",
+                "https://*.google.com/search*"
+            ],
+            "js": [
+                "src/apps/Google.tsx"
+            ],
+            "run_at": "document_start"
+        },
+        {
+            "matches": [
+                "http://*.openai.com/chat*",
+                "https://*.openai.com/chat*"
+            ],
+            "js": [
+                "src/apps/Token.tsx"
+            ],
+            "run_at": "document_end"
+        },
         {
             "matches": [
                 "http://*/*",
                 "https://*/*"
             ],
             "js": [
-                "src/Content.tsx"
-            ]
+                "src/apps/Chat.tsx"
+            ],
+            "run_at": "document_end"
         }
     ]
 }

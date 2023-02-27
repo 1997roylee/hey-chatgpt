@@ -1,36 +1,46 @@
-import create from 'zustand'
-
+import { create } from 'zustand'
+// import { persist, createJSONStorage } from 'zustand/middleware'
 export interface IMessage {
     id: string
     text: string
     sender: 'me' | 'bot'
     index: number
+    parentMessageId?: string
 }
 
 export interface AppState {
     messages: {
         [key: string]: IMessage
     }
-    lastIndex: number
+    isOpen: boolean
+    setIsOpen: (isOpen: boolean) => void
     isLoading: boolean
+    setIsLoading: (isLoading: boolean) => void
     addMessage: (message: IMessage) => void
     removeAllMessages: () => void
     getMessageList: () => IMessage[]
-    setIsLoading: (isLoading: boolean) => void
     lastUpdatedAt: number
     lastConversationId?: string
-    isReverseProxyMode: boolean
-    setIsReverseProxyMode: (isReverseProxyMode: boolean) => void
+    lastTabId?: number
+    lastIndex: number
+    setLastTabId: (lastTabId: number) => void
+    accessToken: string
+    setAccessToken: (accessToken: string) => void
 }
 
+// <AppState, [['zustand/persist', AppState]]>
 export const useAppStore = create<AppState>((set, get) => ({
     messages: {},
     lastIndex: 0,
     isLoading: false,
     lastConversationId: undefined,
     lastUpdatedAt: new Date().getTime(),
-    isReverseProxyMode: false,
-    setIsReverseProxyMode: (isReverseProxyMode: boolean) => set({ isReverseProxyMode }),
+    lastTabId: undefined,
+    setLastTabId: (lastTabId: number) => set({ lastTabId }),
+    accessToken: '',
+    setAccessToken: (accessToken: string) => set({ accessToken }),
+    isOpen: false,
+    setIsOpen: (isOpen: boolean) => set({ isOpen }),
     addMessage: (message: IMessage) => {
         if (Object.prototype.hasOwnProperty.call(get().messages, message.id)) {
             set((state) => ({
@@ -53,6 +63,7 @@ export const useAppStore = create<AppState>((set, get) => ({
                         index: get().lastIndex,
                     },
                 },
+                // eslint-disable-next-line @typescript-eslint/restrict-plus-operands
                 lastIndex: get().lastIndex + 1,
                 lastUpdatedAt: new Date().getTime(),
             }))
