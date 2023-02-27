@@ -4,7 +4,6 @@ import { useCallback, useEffect, useState } from 'react'
 import Browser from 'webextension-polyfill'
 import { Button, Divider } from 'ui/components'
 import { AppState, IMessage, useAppStore } from 'stores/AppStore'
-import { IMessagePayload } from '../../../Background'
 
 export default function GoogleAdditional(): JSX.Element {
     const [message, setMessage] = useState<IMessage>()
@@ -15,7 +14,7 @@ export default function GoogleAdditional(): JSX.Element {
         addMessage,
     }))
 
-    const handleResponse = useCallback((newMessage: IMessagePayload): void => {
+    const handleResponse = useCallback((newMessage: any): void => {
         const { type, payload } = newMessage
 
         if (type !== 'google') return
