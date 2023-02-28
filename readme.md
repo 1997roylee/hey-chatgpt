@@ -1,6 +1,6 @@
-# Hey Chatgpt (Beta): All-in-one assistants for ChatGPT
+# Hey ChatGPT (Beta): Advanced Google Search for ChatGPT
 
-"Hey Chatgpt" saves time by letting users ask questions directly to a Chatgpt, without the need for manual searching. It maximizes user value by prioritizing privacy and providing easy access to the chatbot through a shortcut.
+"Hey ChatGPT" saves time by letting users ask questions directly to a ChatGPT, without the need for manual searching. It maximizes user value by prioritizing privacy and providing easy access to the chatbot through a shortcut.
 
 ---
 
@@ -8,7 +8,7 @@ Install from Chrome Web Store (Upcoming)
 
 ---
 
-Hey Chatgpt is here to help out:
+Hey ChatGPT is here to help out:
 
 - 🔎 ChatGPT for Google: Search ChatGPT results using your keywords. Save time, get quick access to answers.
 - ⏰ Save time
