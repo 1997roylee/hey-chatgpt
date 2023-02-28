@@ -17,8 +17,6 @@
     ],
     "permissions": [
         "activeTab",
-        "tabs",
-        "cookies",
         "storage"
     ],
     "background": {
