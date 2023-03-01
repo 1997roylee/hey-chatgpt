@@ -4,7 +4,7 @@
 
 ---
 
-Install from Chrome Web Store (Upcoming)
+[Install from Chrome Web Store](https://chrome.google.com/webstore/detail/hey-chatgpt-advanced-chat/addpnjefnnblgabempjcafdiieoipmfo)
 
 ---
 
